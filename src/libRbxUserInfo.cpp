@@ -28,7 +28,7 @@ namespace RbxUserInfo {
         cpr::Response userInfo = cpr::Get(cpr::Url{"https://users.roblox.com/v1/users/" + userID});
         cpr::Response onlineStat = cpr::Get(cpr::Url{"https://api.roblox.com/users/" + std::to_string(userID) + "/onlinestatus/"});
         if (userInfo.status_code != 200 || onlineStat.status_code != 200) {
-            return *static_cast<User*>(NULL);
+            return *(new User);
         }
         json userInfoParse = json::parse(userInfo.text);
         json onlineStatParse = json::parse(onlineStat.text);
@@ -40,7 +40,7 @@ namespace RbxUserInfo {
         cpr::Response nameToID = cpr::Get(cpr::Url{"https://api.roblox.com/users/get-by-username?username=" + username});
         json nameToIDParse = json::parse(nameToID.text);
         if (nameToIDParse.contains("success")) {
-            if (!nameToIDParse["success"]) {return *static_cast<User*>(NULL);}
+            if (!nameToIDParse["success"]) {return *(new User);}
         }
         return GetInfoByID(nameToIDParse.at("Id"));
     }
