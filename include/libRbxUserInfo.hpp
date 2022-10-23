@@ -8,6 +8,7 @@ namespace RbxUserInfo {
         std::string lastOnline = "";
         int userID = -1;
         int locationType = -1;
+        int gameID = -1;
         int placeID = -1;
         int presenceType = -1;
         int universeID = -1;

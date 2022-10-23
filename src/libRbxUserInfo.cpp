@@ -15,6 +15,7 @@ namespace RbxUserInfo {
         out.lastOnline = onlineStatParse.at("LastOnline");
         out.userID = userInfoParse.at("id");
         out.locationType = onlineStatParse.at("LocationType");
+        out.gameID = onlineStatParse.at("GameId");
         out.placeID = onlineStatParse.at("PlaceId");
         out.presenceType = onlineStatParse.at("PresenceType");
         out.universeID = onlineStatParse.at("UniverseId");
