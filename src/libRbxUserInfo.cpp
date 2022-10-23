@@ -26,7 +26,7 @@ namespace RbxUserInfo {
     }
 
     User GetInfoByID(int userID) {
-        cpr::Response userInfo = cpr::Get(cpr::Url{"https://users.roblox.com/v1/users/" + userID});
+        cpr::Response userInfo = cpr::Get(cpr::Url{"https://users.roblox.com/v1/users/" + std::to_string(userID)});
         cpr::Response onlineStat = cpr::Get(cpr::Url{"https://api.roblox.com/users/" + std::to_string(userID) + "/onlinestatus/"});
         if (userInfo.status_code != 200 || onlineStat.status_code != 200) {
             return *(new User);
