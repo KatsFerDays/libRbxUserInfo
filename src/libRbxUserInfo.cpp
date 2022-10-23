@@ -8,27 +8,21 @@ namespace RbxUserInfo {
 
     User MakeUser(json userInfoParse, json onlineStatParse) {
         User out;
-        try {
-            out.username = userInfoParse.at("name").get<std::string>();
-            out.displayName = userInfoParse.at("displayName").get<std::string>();
-            out.creationDate = userInfoParse.at("created").get<std::string>();
-            out.description = userInfoParse.at("description").get<std::string>();
-            out.lastLocation = onlineStatParse.at("LastLocation").get<std::string>();
-            out.lastOnline = onlineStatParse.at("LastOnline").get<std::string>();
-            out.userID = userInfoParse.at("id").get<int>();
-            out.locationType = onlineStatParse.at("LocationType").get<int>();
-            out.gameID = onlineStatParse.at("GameId").get<int>();
-            out.placeID = onlineStatParse.at("PlaceId").get<int>();
-            out.presenceType = onlineStatParse.at("PresenceType").get<int>();
-            out.universeID = onlineStatParse.at("UniverseId").get<int>();
-            out.verified = userInfoParse.at("hasVerifiedBadge").get<bool>();
-            out.banned = userInfoParse.at("isBanned").get<bool>();
-            out.isOnline = onlineStatParse.at("IsOnline").get<bool>();
-        }
-        catch(std::exception& e) {
-            std::cerr << e.what();
-            system("pause");
-        }
+        out.username = userInfoParse.at("name").get<std::string>();
+        out.displayName = userInfoParse.at("displayName").get<std::string>();
+        out.creationDate = userInfoParse.at("created").get<std::string>();
+        out.description = userInfoParse.at("description").get<std::string>();
+        out.lastLocation = onlineStatParse.at("LastLocation").get<std::string>();
+        out.lastOnline = onlineStatParse.at("LastOnline").get<std::string>();
+        out.userID = userInfoParse.at("id").get<int>();
+        out.locationType = onlineStatParse.at("LocationType").get<int>();
+        out.gameID = onlineStatParse.at("GameId").is_null() ? NULL : onlineStatParse.at("GameId").get<int>();
+        out.placeID = onlineStatParse.at("PlaceId").is_null() ? NULL : onlineStatParse.at("PlaceId").get<int>();
+        out.presenceType = onlineStatParse.at("PresenceType").is_null() ? NULL : onlineStatParse.at("PresenceType").get<int>();
+        out.universeID = onlineStatParse.at("UniverseId").is_null() ? NULL : onlineStatParse.at("UniverseId").get<int>();
+        out.verified = userInfoParse.at("hasVerifiedBadge").get<bool>();
+        out.banned = userInfoParse.at("isBanned").get<bool>();
+        out.isOnline = onlineStatParse.at("IsOnline").get<bool>();
         return out;
     }
 
