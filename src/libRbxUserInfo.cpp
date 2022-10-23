@@ -28,6 +28,7 @@ namespace RbxUserInfo {
         catch(std::exception& e) {
             std::cerr << e.what();
             system("pause");
+        }
         return out;
     }
 
