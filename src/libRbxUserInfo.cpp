@@ -1,27 +1,33 @@
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
 #include "libRbxUserInfo.hpp"
+#include <iostream>
 
 namespace RbxUserInfo {
     using json = nlohmann::json;
 
     User MakeUser(json userInfoParse, json onlineStatParse) {
         User out;
-        out.username = userInfoParse.at("name");
-        out.displayName = userInfoParse.at("displayName");
-        out.creationDate = userInfoParse.at("created");
-        out.description = userInfoParse.at("description");
-        out.lastLocation = onlineStatParse.at("LastLocation");
-        out.lastOnline = onlineStatParse.at("LastOnline");
-        out.userID = userInfoParse.at("id");
-        out.locationType = onlineStatParse.at("LocationType");
-        out.gameID = onlineStatParse.at("GameId");
-        out.placeID = onlineStatParse.at("PlaceId");
-        out.presenceType = onlineStatParse.at("PresenceType");
-        out.universeID = onlineStatParse.at("UniverseId");
-        out.verified = userInfoParse.at("hasVerifiedBadge");
-        out.banned = userInfoParse.at("isBanned");
-        out.isOnline = onlineStatParse.at("IsOnline");
+        try {
+            out.username = userInfoParse.at("name");
+            out.displayName = userInfoParse.at("displayName");
+            out.creationDate = userInfoParse.at("created");
+            out.description = userInfoParse.at("description");
+            out.lastLocation = onlineStatParse.at("LastLocation");
+            out.lastOnline = onlineStatParse.at("LastOnline");
+            out.userID = userInfoParse.at("id");
+            out.locationType = onlineStatParse.at("LocationType");
+            out.gameID = onlineStatParse.at("GameId");
+            out.placeID = onlineStatParse.at("PlaceId");
+            out.presenceType = onlineStatParse.at("PresenceType");
+            out.universeID = onlineStatParse.at("UniverseId");
+            out.verified = userInfoParse.at("hasVerifiedBadge");
+            out.banned = userInfoParse.at("isBanned");
+            out.isOnline = onlineStatParse.at("IsOnline");
+        }
+        catch (std::exception& e) {
+            std::cerr << e.what();
+        }
         return out;
     }
 
