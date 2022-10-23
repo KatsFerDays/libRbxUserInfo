@@ -1,7 +1,6 @@
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
 #include "libRbxUserInfo.hpp"
-#include <iostream>
 
 namespace RbxUserInfo {
     using json = nlohmann::json;
